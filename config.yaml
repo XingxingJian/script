@@ -1,0 +1,19 @@
+####slurm####
+executor: slurm
+default-resources:
+  slurm_partition: "CU"
+  slurm_extra: "'--qos=high '"
+  nodes: 3
+  slurm_account: "lijc"
+  
+set-resources:
+  select_unmap_ppmi:        
+    cpus_per_task: 3
+    slurm_extra: "'--qos=high '"
+
+  fastp_1bwa:
+    cpus_per_task: 2
+    slurm_partition: "FAT1"
+    
+  kraken2_kreport:
+    cpus_per_task: 30
