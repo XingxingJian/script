@@ -1,11 +1,12 @@
 #!/bin/bash
 
-###download database
+###
 git clone https://github.com/XingxingJian/script.git snakemake
 cd snakemake
 conda env create -f snakemake-tutorial.yaml
 conda activate snakemake-tutorial
-####
+
+####download database
 mkdir Database
 cd Database
 ####hg38
