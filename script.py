@@ -9,10 +9,10 @@ parser.add_argument('--type', choices=['se', 'pe'], help='Input type: single-end
 parser.add_argument('--threads', type=int, default=2, help='Number of threads to use for processing, default:2')  
 parser.add_argument('--remove-intermediate_output', action='store_true', help='Enable temporary file handling(default: False)')  
   
-parser.add_argument('--hg38-ref', type=str, default="Database/hg38/hg38.fa", help='Path to the hg38 reference genome FASTA file, default:"Database/hg38/hg38.fa"')  
-parser.add_argument('--bwa-ref', type=str, default="Database/hg38/bwa_index/hg38.fa", help='Path to the BWA-indexed hg38 reference genome, default:"Database/hg38/bowtie2_build/hg38"')  
-parser.add_argument('--bowtie2-ref', type=str, default="Database/hg38/bowtie2_build/hg38", help='Path to the Bowtie2-indexed hg38 reference genome, default:"Database/hg38/bowtie2_build/hg38"')  
-parser.add_argument('--kraken2-ref', type=str, default="Database/k2_pluspf_20240605", help='Path to the Kraken2 database, default:"Database/k2_pluspf_20240605"') 
+parser.add_argument('--hg38-ref', type=str, default="~/snakemake/Database/hg38/hg38.fa", help='Path to the hg38 reference genome FASTA file, default:"~/snakemake/Database/hg38/hg38.fa"')  
+parser.add_argument('--bwa-ref', type=str, default="~/snakemake/Database/hg38/bwa_index/hg38.fa", help='Path to the BWA-indexed hg38 reference genome, default:"~/snakemake/Database/hg38/bowtie2_build/hg38"')  
+parser.add_argument('--bowtie2-ref', type=str, default="~/snakemake/Database/hg38/bowtie2_build/hg38", help='Path to the Bowtie2-indexed hg38 reference genome, default:"~/snakemake/Database/hg38/bowtie2_build/hg38"')  
+parser.add_argument('--kraken2-ref', type=str, default="~/snakemake/Database/k2_pluspf_20240605", help='Path to the Kraken2 database, default:"~/snakemake/Database/k2_pluspf_20240605"') 
 
 parser.add_argument('--confidence', type=float,default="0.0",help=' Confidence score threshold (default: 0.0) when using Kraken2; must be in [0, 1].')
 VERSION = "1.0.0"
@@ -40,7 +40,12 @@ parser.add_argument('--summary', '-S', action='store_true', help='Print a summar
 parser.add_argument('--nolock', action='store_true', help='Do not lock the working directory (default: False)')  
                
 args = parser.parse_args()
-  
+
+args.bwa_ref = os.path.expanduser(args.bwa_ref)  
+args.hg38_ref = os.path.expanduser(args.hg38_ref)
+args.bowtie2_ref = os.path.expanduser(args.bowtie2_ref) 
+args.kraken2_ref = os.path.expanduser(args.kraken2_ref) 
+
 config = {
   'database': {  
     'hg38_ref': args.hg38_ref,
