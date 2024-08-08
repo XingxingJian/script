@@ -18,7 +18,7 @@ gzip -d hg38.fa.gz
 ####kraken2_db
 cd ~/snakemake/Database/k2_pluspf_20240605
 wget https://genome-idx.s3.amazonaws.com/kraken/k2_pluspf_20240605.tar.gz
-gzip -d k2_pluspf_20240605.tar.gz
+tar -zxvf k2_pluspf_20240605.tar.gz
 
 ####
 cd ~/snakemake
