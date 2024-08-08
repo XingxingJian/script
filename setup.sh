@@ -2,7 +2,7 @@
 
 ###
 git clone https://github.com/XingxingJian/script.git ~/snakemake
-cd snakemake
+cd ~/snakemake
 conda env create -f snakemake-tutorial.yaml
 conda activate snakemake-tutorial
 
